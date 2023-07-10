@@ -50,20 +50,6 @@ const updateDiscussion = async (req, res) => {
   }
 }
 
-const deleteDiscussion = async (req, res) => {
-  const { id } = req.params
-  try {
-    const discussion = await Discussion.findByIdAndRemove(id)
-    if (!discussion) {
-      return res.status(404).json({ message: 'Discussion not found' })
-    }
-    res.json({ message: 'Discussion deleted successfully' })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Failed to delete discussion' })
-  }
-}
-
 const getDiscussionsByUser = async (req, res) => {
   const { userId } = req.params
   try {
@@ -80,6 +66,5 @@ module.exports = {
   getAllDiscussions,
   getDiscussionById,
   updateDiscussion,
-  deleteDiscussion,
   getDiscussionsByUser
 }

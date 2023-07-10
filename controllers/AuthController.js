@@ -80,12 +80,10 @@ const UpdatePassword = async (req, res) => {
       .send({ status: 'Error', msg: 'Old Password did not match!' })
   } catch (error) {
     console.log(error)
-    res
-      .status(401)
-      .send({
-        status: 'Error',
-        msg: 'An error has occurred updating password!'
-      })
+    res.status(401).send({
+      status: 'Error',
+      msg: 'An error has occurred updating password!'
+    })
   }
 }
 
