@@ -1,10 +1,8 @@
-const Review = require('../models/Review')
+const { Review } = require('../models')
 
-// Create a new review
-exports.createReview = async (req, res) => {
-  const { content, user, book } = req.body
+const createReview = async (req, res) => {
   try {
-    const review = await Review.create({ content, user, book })
+    const review = await Review.create({ ...req.body })
     res.status(201).json({ review })
   } catch (error) {
     console.error(error)
@@ -12,8 +10,7 @@ exports.createReview = async (req, res) => {
   }
 }
 
-// Get all reviews for a book
-exports.getReviewsByBook = async (req, res) => {
+const getReviewsByBook = async (req, res) => {
   const { bookId } = req.params
   try {
     const reviews = await Review.find({ book: bookId })
@@ -24,16 +21,10 @@ exports.getReviewsByBook = async (req, res) => {
   }
 }
 
-// Update review details
-exports.updateReview = async (req, res) => {
+const updateReview = async (req, res) => {
   const { id } = req.params
-  const { content } = req.body
   try {
-    const review = await Review.findByIdAndUpdate(
-      id,
-      { content },
-      { new: true }
-    )
+    const review = await Review.findByIdAndUpdate(id, req.body, { new: true })
     if (!review) {
       return res.status(404).json({ message: 'Review not found' })
     }
@@ -44,8 +35,7 @@ exports.updateReview = async (req, res) => {
   }
 }
 
-// Delete a review
-exports.deleteReview = async (req, res) => {
+const deleteReview = async (req, res) => {
   const { id } = req.params
   try {
     const review = await Review.findByIdAndRemove(id)
@@ -59,8 +49,7 @@ exports.deleteReview = async (req, res) => {
   }
 }
 
-// Get reviews by user
-exports.getReviewsByUser = async (req, res) => {
+const getReviewsByUser = async (req, res) => {
   const { userId } = req.params
   try {
     const reviews = await Review.find({ user: userId })
@@ -69,4 +58,12 @@ exports.getReviewsByUser = async (req, res) => {
     console.error(error)
     res.status(500).json({ message: 'Failed to fetch reviews' })
   }
+}
+
+module.exports = {
+  createReview,
+  getReviewsByBook,
+  updateReview,
+  deleteReview,
+  getReviewsByUser
 }

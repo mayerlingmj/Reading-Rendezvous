@@ -1,15 +1,8 @@
-const Discussion = require('../models/Discussion')
+const { Discussion } = require('../models')
 
-// Create a new discussion
-exports.createDiscussion = async (req, res) => {
-  const { title, content, userId, bookId } = req.body
+const createDiscussion = async (req, res) => {
   try {
-    const discussion = await Discussion.create({
-      title,
-      content,
-      user: userId,
-      book: bookId
-    })
+    const discussion = await Discussion.create({ ...req.body })
     res.status(201).json({ discussion })
   } catch (error) {
     console.error(error)
@@ -17,10 +10,9 @@ exports.createDiscussion = async (req, res) => {
   }
 }
 
-// Get all discussions
-exports.getAllDiscussions = async (req, res) => {
+const getAllDiscussions = async (req, res) => {
   try {
-    const discussions = await Discussion.find().populate('user', 'email')
+    const discussions = await Discussion.find()
     res.json({ discussions })
   } catch (error) {
     console.error(error)
@@ -28,11 +20,10 @@ exports.getAllDiscussions = async (req, res) => {
   }
 }
 
-// Get discussion details by ID
-exports.getDiscussionById = async (req, res) => {
+const getDiscussionById = async (req, res) => {
   const { id } = req.params
   try {
-    const discussion = await Discussion.findById(id).populate('user', 'email')
+    const discussion = await Discussion.findById(id)
     if (!discussion) {
       return res.status(404).json({ message: 'Discussion not found' })
     }
@@ -43,16 +34,12 @@ exports.getDiscussionById = async (req, res) => {
   }
 }
 
-// Update discussion details
-exports.updateDiscussion = async (req, res) => {
+const updateDiscussion = async (req, res) => {
   const { id } = req.params
-  const { title, content } = req.body
   try {
-    const discussion = await Discussion.findByIdAndUpdate(
-      id,
-      { title, content },
-      { new: true }
-    ).populate('user', 'email')
+    const discussion = await Discussion.findByIdAndUpdate(id, req.body, {
+      new: true
+    })
     if (!discussion) {
       return res.status(404).json({ message: 'Discussion not found' })
     }
@@ -63,8 +50,7 @@ exports.updateDiscussion = async (req, res) => {
   }
 }
 
-// Delete a discussion
-exports.deleteDiscussion = async (req, res) => {
+const deleteDiscussion = async (req, res) => {
   const { id } = req.params
   try {
     const discussion = await Discussion.findByIdAndRemove(id)
@@ -78,17 +64,22 @@ exports.deleteDiscussion = async (req, res) => {
   }
 }
 
-// Get discussions by user
-exports.getDiscussionsByUser = async (req, res) => {
+const getDiscussionsByUser = async (req, res) => {
   const { userId } = req.params
   try {
-    const discussions = await Discussion.find({ user: userId }).populate(
-      'user',
-      'email'
-    )
+    const discussions = await Discussion.find({ user: userId })
     res.json({ discussions })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Failed to fetch discussions' })
   }
+}
+
+module.exports = {
+  createDiscussion,
+  getAllDiscussions,
+  getDiscussionById,
+  updateDiscussion,
+  deleteDiscussion,
+  getDiscussionsByUser
 }
