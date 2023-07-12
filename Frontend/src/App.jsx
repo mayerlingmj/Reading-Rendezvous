@@ -9,6 +9,13 @@ import Comments from './components/Comments'
 const App = () => {
   return (
     <Router>
+      <nav>
+        <Link to="/auth">Auth</Link>
+        <Link to="/books">Books</Link>
+        <Link to="/discussions">Discussions</Link>
+        <Link to="/reviews">Reviews</Link>
+        <Link to="/comments">Comments</Link>
+      </nav>
       <Switch>
         <Route path="/auth">
           <Auth />
