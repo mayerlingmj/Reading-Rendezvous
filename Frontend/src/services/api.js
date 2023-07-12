@@ -1,25 +1,18 @@
-import axios from 'axios'
+import Axios from 'axios'
 
-const baseURL = 'https://openlibrary.org'
+export const BASE_URL = 'http://localhost:3001'
 
-const GetBookByISBN = async (isbn) => {
-  try {
-    const response = await axios.get(
-      `${baseURL}/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
-    )
-    return response.data
-  } catch (error) {
-    throw error
-  }
-}
+const Client = Axios.create({ baseURL: BASE_URL })
 
-const SearchBooks = async (query) => {
-  try {
-    const response = await axios.get(`${baseURL}/search.json?q=${query}`)
-    return response.data.docs
-  } catch (error) {
-    throw error
-  }
-}
+Client.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+    return config
+  },
+  (error) => Promise.reject(error)
+)
 
-export default api
+export default Client
