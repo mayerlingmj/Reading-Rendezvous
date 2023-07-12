@@ -8,6 +8,8 @@ import Discussions from './components/Discussions'
 import Reviews from './components/Reviews'
 import Comments from './components/Comments'
 import HomePage from './components/HomePage'
+import BookDetails from './pages/BookDetails'
+
 import { CheckSession } from './services/Auth'
 
 const App = () => {
@@ -37,11 +39,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
-          <Route path="/register" element={<Register setUser={setUser} />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/books" element={<Books user={user} />} />
           <Route path="/discussions" element={<Discussions user={user} />} />
           <Route path="/reviews" element={<Reviews user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
+          <Route path="/book/:bookId" element={<BookDetails />} />
         </Routes>
       </main>
     </div>

@@ -1,4 +1,6 @@
 import React from 'react'
+import SignIn from '../pages/Signin/'
+import Register from '../pages/Register'
 import { Link } from 'react-router-dom'
 
 const Nav = ({ user, handleLogOut }) => {
@@ -15,7 +17,8 @@ const Nav = ({ user, handleLogOut }) => {
         </>
       ) : (
         <>
-          <Link to="/auth">Sign In / Sign Up</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/signin">Sign In</Link>
         </>
       )}
     </nav>
