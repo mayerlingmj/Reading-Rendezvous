@@ -10,7 +10,7 @@ const HomePage = () => {
       const result = await axios.get(
         `http://openlibrary.org/search.json?title=${query}`
       )
-      setBooks(result.data.docs)
+      setBooks(result.data.docs.slice(0, 10))
     }
 
     fetchBooks()
@@ -19,6 +19,12 @@ const HomePage = () => {
   const handleSearch = (e) => {
     e.preventDefault()
     setQuery(e.target.elements.search.value)
+  }
+
+  const constructImageURL = (book) => {
+    return book.cover_i
+      ? `http://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
+      : 'https://via.placeholder.com/150'
   }
 
   return (
@@ -32,7 +38,12 @@ const HomePage = () => {
       </form>
 
       {books.map((book, index) => (
-        <p key={index}>{book.title_suggest}</p>
+        <div key={index}>
+          <img src={constructImageURL(book)} alt={book.title_suggest} />
+          <p>{book.title_suggest}</p>
+          <p>{book.author_name && book.author_name[0]}</p>
+          <p>{book.first_publish_year}</p>
+        </div>
       ))}
     </div>
   )

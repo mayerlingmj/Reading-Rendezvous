@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
 import Nav from './components/Nav'
-import Auth from './components/Auth'
+import SignIn from './pages/Signin'
+import Register from './pages/Register'
 import Books from './components/Books'
 import Discussions from './components/Discussions'
 import Reviews from './components/Reviews'
@@ -35,7 +36,8 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/auth" element={<Auth setUser={setUser} />} />
+          <Route path="/signin" element={<SignIn setUser={setUser} />} />
+          <Route path="/register" element={<Register setUser={setUser} />} />
           <Route path="/books" element={<Books user={user} />} />
           <Route path="/discussions" element={<Discussions user={user} />} />
           <Route path="/reviews" element={<Reviews user={user} />} />

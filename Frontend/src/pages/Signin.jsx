@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { SignInUser } from '../services/Auth'
+import { SignIn } from '../services/Auth'
 import { useNavigate } from 'react-router-dom'
 
-const SignIn = ({ setUser }) => {
+const SignInComponent = ({ setUser }) => {
   const navigate = useNavigate()
   const [formValues, setFormValues] = useState({
     email: '',
@@ -15,7 +15,7 @@ const SignIn = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const user = await SignInUser({
+    const user = await SignIn({
       email: formValues.email,
       password: formValues.password
     })
@@ -51,4 +51,4 @@ const SignIn = ({ setUser }) => {
   )
 }
 
-export default SignIn
+export default SignInComponent
