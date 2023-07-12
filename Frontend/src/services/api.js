@@ -1,25 +1,23 @@
 import axios from 'axios'
 
-const api = axios.create({
-  baseURL: 'https://openlibrary.org/'
-})
+const baseURL = 'https://openlibrary.org'
 
-export const getAllBooks = async () => {
+export const GetBookByISBN = async (isbn) => {
   try {
-    const response = await api.get('/books')
+    const response = await axios.get(
+      `${baseURL}/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
+    )
     return response.data
   } catch (error) {
-    console.error('Error fetching books:', error)
     throw error
   }
 }
 
-export const getDiscussions = async () => {
+export const SearchBooks = async (query) => {
   try {
-    const response = await api.get('/discussions')
-    return response.data
+    const response = await axios.get(`${baseURL}/search.json?q=${query}`)
+    return response.data.docs
   } catch (error) {
-    console.error('Error fetching discussions:', error)
     throw error
   }
 }
