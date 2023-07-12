@@ -1,7 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import Auth from './components/Auth'
+import Books from './components/Books'
+import Discussions from './components/Discussions'
+import Reviews from './components/Reviews'
+import Comments from './components/Comments'
 
 function App() {
   const [count, setCount] = useState(0)
