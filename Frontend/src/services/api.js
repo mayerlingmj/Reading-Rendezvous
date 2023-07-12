@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const baseURL = 'https://openlibrary.org'
 
-export const GetBookByISBN = async (isbn) => {
+const GetBookByISBN = async (isbn) => {
   try {
     const response = await axios.get(
       `${baseURL}/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
@@ -13,7 +13,7 @@ export const GetBookByISBN = async (isbn) => {
   }
 }
 
-export const SearchBooks = async (query) => {
+const SearchBooks = async (query) => {
   try {
     const response = await axios.get(`${baseURL}/search.json?q=${query}`)
     return response.data.docs
