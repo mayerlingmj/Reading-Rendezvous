@@ -1,24 +1,16 @@
 const mongoose = require('mongoose')
 
-const User = require('./User')
-const Book = require('./Book')
-const Discussion = require('./Discussion')
-const Review = require('./Review')
-const Comment = require('./Comment')
+const userSchema = require('./User')
+const bookSchema = require('./Book')
+const discussionSchema = require('./Discussion')
+const reviewSchema = require('./Review')
+const commentSchema = require('./Comment')
 
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  })
-  .then(() => {
-    console.log('Connected to MongoDB')
-  })
-  .catch((error) => {
-    console.error('Failed to connect to MongoDB:', error)
-  })
-
+const User = mongoose.model('User', userSchema)
+const Book = mongoose.model('Book', bookSchema)
+const Discussion = mongoose.model('Discussion', discussionSchema)
+const Review = mongoose.model('Review', reviewSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 module.exports = {
   User,
   Book,
