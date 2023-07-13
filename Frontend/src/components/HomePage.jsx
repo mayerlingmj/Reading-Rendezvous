@@ -3,23 +3,18 @@ import axios from 'axios'
 
 const HomePage = () => {
   const [books, setBooks] = useState([])
-  const [query, setQuery] = useState('fantasy')
+  const author = 'Maya Angelou' // Replace this with your author of interest
 
   useEffect(() => {
     const fetchBooks = async () => {
       const result = await axios.get(
-        `http://openlibrary.org/search.json?title=${query}`
+        `http://openlibrary.org/search.json?author=${author}`
       )
       setBooks(result.data.docs.slice(0, 10))
     }
 
     fetchBooks()
-  }, [query])
-
-  const handleSearch = (e) => {
-    e.preventDefault()
-    setQuery(e.target.elements.search.value)
-  }
+  }, [author])
 
   const constructImageURL = (book) => {
     return book.cover_i
@@ -28,15 +23,13 @@ const HomePage = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
-        <label>
-          Search for a book:
-          <input type="text" name="search" />
-        </label>
-        <button type="submit">Search</button>
-      </form>
-
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '20px'
+      }}
+    >
       {books.map((book, index) => (
         <div key={index}>
           <img src={constructImageURL(book)} alt={book.title_suggest} />

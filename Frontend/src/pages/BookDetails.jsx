@@ -4,6 +4,36 @@ import Reviews from '../components/Reviews'
 
 const BookDetails = ({ book }) => {
   const [bookSummary, setBookSummary] = useState('')
+  const [review, setReview] = useState('')
+
+  const handleReviewChange = (event) => {
+    setReview(event.target.value)
+  }
+
+  const handleReviewSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      await axios.post('/reviews', {
+        bookId: book._id,
+        review
+      })
+
+      setReview('')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleAddBookToList = async () => {
+    try {
+      await axios.post('/add-book-to-list', {
+        userId: user._id,
+        bookId: book._id
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
     const fetchBookSummary = async () => {
@@ -46,6 +76,12 @@ const BookDetails = ({ book }) => {
       )}
       {book.cover_i && <img src={coverUrl} alt={book.title} />}
       <Reviews bookId={book._id} />
+      <button onClick={handleAddBookToList}>Add to My List</button>
+      <form onSubmit={handleReviewSubmit}>
+        <label htmlFor="review">Add Review:</label>
+        <input id="review" value={review} onChange={handleReviewChange} />
+        <button type="submit">Submit Review</button>
+      </form>
     </div>
   )
 }
