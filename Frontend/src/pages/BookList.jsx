@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import BookDetails from './BookDetails'
+import { GetBooks } from '../services/Book'
 
 const BookList = () => {
   const [books, setBooks] = useState([])
@@ -8,8 +9,9 @@ const BookList = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('/books')
-        setBooks(response.data.books)
+        const response = await GetBooks()
+        setBooks(response.books)
+        console.log(response)
       } catch (error) {
         console.error(error)
       }

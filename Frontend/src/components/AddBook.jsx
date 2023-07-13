@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { PostBook } from '../services/Book'
 
 const AddBook = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -37,6 +38,11 @@ const AddBook = () => {
     setSearchTerm(e.target.value)
   }
 
+  const addBooks = async (data) => {
+    let books = await PostBook(data)
+    console.log(data)
+  }
+
   return (
     <div>
       <h2>Add a Book</h2>
@@ -54,7 +60,12 @@ const AddBook = () => {
             <p>
               {book.title} ({book.first_publish_year})
             </p>
-            <button onClick={() => setSelectedBook(book)}>
+            <button
+              onClick={(e) => {
+                e.preventDefault
+                addBooks(book)
+              }}
+            >
               Select This Book
             </button>
           </div>

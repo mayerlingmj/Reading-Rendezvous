@@ -1,9 +1,8 @@
 const { Schema } = require('mongoose')
 
 const bookSchema = new Schema({
-  title: { type: String, required: true, unique: true },
-  author: { type: String, required: true },
-  description: { type: String, required: true }
+  title: { type: String, required: false, unique: true },
+  author_name: { type: Array, required: false }
 })
 
 module.exports = bookSchema

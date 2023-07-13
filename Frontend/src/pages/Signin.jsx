@@ -15,17 +15,14 @@ const SignIn = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const user = await SignInUser({
-      email: formValues.email,
-      password: formValues.password
-    })
-
-    if (user) {
-      setUser(user)
-      navigate('/feed')
-    } else {
-      alert('Invalid credentials, please try again!')
-    }
+    const user = await SignInUser(formValues)
+    setUser(user)
+    // if (user) {
+    //   setUser(user)
+    navigate('/')
+    // } else {
+    //   alert('Invalid credentials, please try again!')
+    // }
   }
 
   return (

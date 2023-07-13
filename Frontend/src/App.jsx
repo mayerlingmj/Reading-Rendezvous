@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router'
 import Nav from './components/Nav'
 import SignIn from './pages/Signin'
 import Register from './pages/Register'
-import Books from './components/Books'
+import Books from './pages/Books'
 import Discussions from './components/Discussions'
 import Reviews from './components/Reviews'
 import Comments from './components/Comments'
@@ -33,7 +33,7 @@ const App = () => {
       checkToken()
     }
   }, [])
-
+  console.log(user)
   return (
     <div className="App">
       <Nav user={user} handleLogOut={handleLogOut} />
@@ -42,13 +42,14 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route exact path="/" component={BookList} />
-          <Route exact path="/add" component={AddBook} />
+          {/* <Route exact path="/" component={BookList} /> */}
+          {/* <Route exact path="/add" component={AddBook} /> */}
           <Route path="/books" element={<Books user={user} />} />
           <Route path="/discussions" element={<Discussions user={user} />} />
           <Route path="/reviews" element={<Reviews user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
+          <Route path="/myBooks" element={<BookList />} />
         </Routes>
       </main>
     </div>

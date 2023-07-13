@@ -3,9 +3,8 @@ const { Book } = require('../models')
 // Create a new book
 const createBook = async (req, res) => {
   try {
-    const { title, author, description } = req.body
-    const book = await Book.create({ title, author, description })
-    res.status(201).json({ book })
+    const book = await Book.create({ ...req.body })
+    res.status(201).send(book)
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Failed to create book' })
