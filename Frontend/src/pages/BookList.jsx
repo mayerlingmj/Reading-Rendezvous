@@ -21,7 +21,7 @@ const BookList = () => {
     <div>
       <h2>Book List</h2>
       {books.map((book) => (
-        <BookDetails key={book._id} bookId={book._id} />
+        <BookDetails key={book._id} book={book} />
       ))}
     </div>
   )

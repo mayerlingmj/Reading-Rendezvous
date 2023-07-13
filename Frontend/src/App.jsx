@@ -9,11 +9,14 @@ import Reviews from './components/Reviews'
 import Comments from './components/Comments'
 import HomePage from './components/HomePage'
 import BookDetails from './pages/BookDetails'
+import AddBook from './components/AddBook'
+import BookList from './pages/BookList'
 
 import { CheckSession } from './services/Auth'
 
 const App = () => {
   const [user, setUser] = useState(null)
+  const [books, setBooks] = useState([]) // new state for the books
 
   const handleLogOut = () => {
     setUser(null)
@@ -23,6 +26,11 @@ const App = () => {
   const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
+  }
+
+  const handleAddBook = (book) => {
+    // function to add a book
+    setBooks((prevBooks) => [...prevBooks, book])
   }
 
   useEffect(() => {
@@ -44,7 +52,13 @@ const App = () => {
           <Route path="/discussions" element={<Discussions user={user} />} />
           <Route path="/reviews" element={<Reviews user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
-          <Route path="/book/:bookId" element={<BookDetails />} />
+          <Route exact path="/" element={<BookList books={books} />} />
+          <Route
+            exact
+            path="/add"
+            element={<AddBook onAddBook={handleAddBook} />}
+          />
+          <Route path="/book/:bookId" element={<BookDetails books={books} />} />
         </Routes>
       </main>
     </div>

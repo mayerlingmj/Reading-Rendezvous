@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import AddBook from './AddBook'
 
 const Books = () => {
   const [books, setBooks] = useState([])
@@ -15,6 +16,7 @@ const Books = () => {
 
   return (
     <div>
+      <AddBook />
       {books.map((book, index) => (
         <p key={index}>{book.title}</p>
       ))}
