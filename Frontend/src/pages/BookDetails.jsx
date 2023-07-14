@@ -1,29 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Reviews from '../components/Reviews'
+import Reviews from './Reviews'
+import AddReview from '../components/AddReview'
 
-const BookDetails = ({ book }) => {
+const BookDetails = ({ book, user }) => {
   const [bookSummary, setBookSummary] = useState('')
-  const [review, setReview] = useState('')
 
-  const handleReviewChange = (event) => {
-    setReview(event.target.value)
-  }
-
-  const handleReviewSubmit = async (event) => {
-    event.preventDefault()
-
-    try {
-      await axios.post('/reviews', {
-        bookId: book._id,
-        review
-      })
-
-      setReview('')
-    } catch (error) {
-      console.error(error)
-    }
-  }
   const handleAddBookToList = async () => {
     try {
       await axios.post('/add-book-to-list', {
@@ -76,12 +58,8 @@ const BookDetails = ({ book }) => {
       )}
       {book.cover_i && <img src={coverUrl} alt={book.title} />}
       <Reviews bookId={book._id} />
+      <AddReview bookId={book._id} />
       <button onClick={handleAddBookToList}>Add to My List</button>
-      <form onSubmit={handleReviewSubmit}>
-        <label htmlFor="review">Add Review:</label>
-        <input id="review" value={review} onChange={handleReviewChange} />
-        <button type="submit">Submit Review</button>
-      </form>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import SignIn from './pages/Signin'
 import Register from './pages/Register'
 import Books from './pages/Books'
 import Discussions from './components/Discussions'
-import Reviews from './components/Reviews'
+import Reviews from './pages/Reviews'
 import Comments from './components/Comments'
 import HomePage from './components/HomePage'
 import BookDetails from './pages/BookDetails'
@@ -42,8 +42,6 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          {/* <Route exact path="/" component={BookList} /> */}
-          {/* <Route exact path="/add" component={AddBook} /> */}
           <Route path="/books" element={<Books user={user} />} />
           <Route path="/discussions" element={<Discussions user={user} />} />
           <Route path="/reviews" element={<Reviews user={user} />} />
