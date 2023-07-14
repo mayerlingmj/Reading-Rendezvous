@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { PostBook } from '../services/Book'
+import { useNavigate } from 'react-router-dom'
 
 const AddBook = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [selectedBook, setSelectedBook] = useState(null)
-
+  let navigate = useNavigate()
   const handleSearch = async () => {
     try {
       const olResponse = await axios.get(
@@ -38,9 +39,9 @@ const AddBook = () => {
     setSearchTerm(e.target.value)
   }
 
-  const addBooks = async (data) => {
-    let books = await PostBook(data)
-    console.log(data)
+  const addBook = async (book) => {
+    await PostBook(book)
+    navigate('/myBooks')
   }
 
   return (
@@ -60,10 +61,16 @@ const AddBook = () => {
             <p>
               {book.title} ({book.first_publish_year})
             </p>
+            {book.cover_i && (
+              <img
+                src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                alt="Book Cover"
+              />
+            )}
             <button
               onClick={(e) => {
-                e.preventDefault
-                addBooks(book)
+                e.preventDefault()
+                addBook(book)
               }}
             >
               Select This Book
@@ -73,6 +80,12 @@ const AddBook = () => {
       {selectedBook && (
         <form onSubmit={handleSubmit}>
           <p>Selected Book: {selectedBook.title}</p>
+          {selectedBook.cover_i && (
+            <img
+              src={`https://covers.openlibrary.org/b/id/${selectedBook.cover_i}-M.jpg`}
+              alt="Book Cover"
+            />
+          )}
           <button type="submit">Add Book</button>
         </form>
       )}

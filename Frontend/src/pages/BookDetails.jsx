@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Reviews from './Reviews'
+import Reviews from './ReviewList'
 import AddReview from '../components/AddReview'
 
 const BookDetails = ({ book, user }) => {
@@ -59,7 +59,7 @@ const BookDetails = ({ book, user }) => {
       {book.cover_i && <img src={coverUrl} alt={book.title} />}
       <Reviews bookId={book._id} />
       <AddReview bookId={book._id} />
-      <button onClick={handleAddBookToList}>Add to My List</button>
+      {/* <button onClick={handleAddBookToList}>Add to My List</button> */}
     </div>
   )
 }

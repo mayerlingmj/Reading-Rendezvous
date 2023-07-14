@@ -5,12 +5,14 @@ import SignIn from './pages/Signin'
 import Register from './pages/Register'
 import Books from './pages/Books'
 import Discussions from './components/Discussions'
-import Reviews from './pages/Reviews'
+import Reviews from './pages/ReviewList'
 import Comments from './components/Comments'
 import HomePage from './components/HomePage'
 import BookDetails from './pages/BookDetails'
 import AddBook from './components/AddBook'
 import BookList from './pages/BookList'
+import ReviewList from './pages/ReviewList'
+import ReviewDetail from './pages/ReviewDetails'
 
 import { CheckSession } from './services/Auth'
 
@@ -46,6 +48,14 @@ const App = () => {
           <Route path="/discussions" element={<Discussions user={user} />} />
           <Route path="/reviews" element={<Reviews user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
+          <Route exact path="/reviews" component={ReviewList} />
+          <Route
+            exact
+            path="/reviews/:reviewId"
+            render={({ match }) => (
+              <ReviewDetail reviewId={match.params.reviewId} />
+            )}
+          />
           <Route path="/book/:bookId" element={<BookDetails />} />
           <Route path="/myBooks" element={<BookList />} />
         </Routes>

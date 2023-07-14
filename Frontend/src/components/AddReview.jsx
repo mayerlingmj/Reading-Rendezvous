@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { PostReview } from '../services/Review'
 
-const AddReview = ({ bookId, onReviewChange }) => {
+const AddReview = ({ reviewId }) => {
   const [review, setReview] = useState('')
 
   const handleReviewChange = (event) => {
@@ -12,26 +13,19 @@ const AddReview = ({ bookId, onReviewChange }) => {
     event.preventDefault()
 
     try {
-      await axios.post('/reviews', {
-        bookId,
-        review
-      })
+      await PostReview(review)
 
       setReview('')
-
-      onReviewChange()
     } catch (error) {
       console.error(error)
     }
   }
 
-  const handleReviewUpdate = async (updatedReview) => {
+  const handleReviewUpdate = async () => {
     try {
       await axios.put(`/reviews/${reviewId}`, {
-        review: updatedReview
+        review
       })
-
-      onReviewChange()
     } catch (error) {
       console.error(error)
     }
@@ -40,24 +34,23 @@ const AddReview = ({ bookId, onReviewChange }) => {
   const handleReviewDelete = async () => {
     try {
       await axios.delete(`/reviews/${reviewId}`)
-
-      onReviewChange()
     } catch (error) {
       console.error(error)
     }
   }
 
   return (
-    <form onSubmit={handleReviewSubmit}>
+    <form onSubmit={reviewId ? handleReviewUpdate : handleReviewSubmit}>
       <label htmlFor="review">Review:</label>
       <input id="review" value={review} onChange={handleReviewChange} />
-      <button type="submit">Submit Review</button>
-      <button type="button" onClick={() => handleReviewUpdate(review)}>
-        Update Review
+      <button type="submit">
+        {reviewId ? 'Update Review' : 'Submit Review'}
       </button>
-      <button type="button" onClick={handleReviewDelete}>
-        Delete Review
-      </button>
+      {reviewId && (
+        <button type="button" onClick={handleReviewDelete}>
+          Delete Review
+        </button>
+      )}
     </form>
   )
 }
