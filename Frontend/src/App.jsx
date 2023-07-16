@@ -5,6 +5,8 @@ import SignIn from './pages/Signin'
 import Register from './pages/Register'
 import Books from './pages/Books'
 import Discussions from './components/Discussions'
+import DiscussionList from './pages/DiscussionList'
+import DiscussionDetails from './pages/DiscussionDetail'
 import Reviews from './pages/ReviewList'
 import Comments from './components/Comments'
 import HomePage from './components/HomePage'
@@ -47,13 +49,18 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/books" element={<Books user={user} />} />
           <Route path="/discussions" element={<Discussions user={user} />} />
+          <Route path="/discussions" element={<DiscussionList />} />
+          <Route
+            path="/discussions/:discussionId"
+            element={<DiscussionDetails />}
+          />
           <Route path="/reviews" element={<Reviews user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
           <Route exact path="/reviews" component={ReviewList} />
           <Route path="/reviews/:reviewId" element={<AddReview />} />
           <Route path="/reviewdetails/:reviewId" element={<ReviewDetail />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
-          <Route path="/myBooks" element={<BookList />} />
+          <Route path="/myBooks" element={<BookList user={user} />} />
         </Routes>
       </main>
     </div>

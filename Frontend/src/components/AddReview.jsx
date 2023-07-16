@@ -2,13 +2,21 @@ import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { PostReview, UpdateReview, DeleteReview } from '../services/Review'
 
-const AddReview = () => {
-  const [review, setReview] = useState('')
+const AddReview = ({ user, bookId }) => {
+  const [review, setReview] = useState({
+    content: '',
+    rating: '',
+    user: user.id,
+    book: bookId
+  })
   const { reviewId } = useParams()
   const navigate = useNavigate()
-
+  console.log(user)
   const handleReviewChange = (event) => {
-    setReview(event.target.value)
+    setReview({
+      ...review,
+      [event.target.id]: event.target.value
+    })
   }
 
   const handleReviewSubmit = async (event) => {
@@ -44,7 +52,19 @@ const AddReview = () => {
   return (
     <form onSubmit={reviewId ? handleReviewUpdate : handleReviewSubmit}>
       <label htmlFor="review">Review:</label>
-      <input id="review" value={review} onChange={handleReviewChange} />
+      <input
+        id="content"
+        value={review.content}
+        onChange={handleReviewChange}
+      />
+      <input
+        id="rating"
+        type="number"
+        min="1"
+        max="5"
+        value={review.rating}
+        onChange={handleReviewChange}
+      />
       <button type="submit">
         {reviewId ? 'Update Review' : 'Submit Review'}
       </button>

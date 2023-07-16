@@ -3,7 +3,7 @@ import axios from 'axios'
 import BookDetails from './BookDetails'
 import { GetBooks } from '../services/Book'
 
-const BookList = () => {
+const BookList = ({ user }) => {
   const [books, setBooks] = useState([])
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const BookList = () => {
     <div>
       <h2>Book List</h2>
       {books.map((book) => (
-        <BookDetails key={book._id} book={book} />
+        <BookDetails user={user} key={book._id} book={book} />
       ))}
     </div>
   )

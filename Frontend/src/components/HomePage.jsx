@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const HomePage = () => {
   const [books, setBooks] = useState([])
-  const author = 'Maya Angelou' // Replace this with your author of interest
+  const author = 'Maya Angelou'
 
   useEffect(() => {
     const fetchBooks = async () => {

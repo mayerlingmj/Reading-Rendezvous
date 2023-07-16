@@ -12,6 +12,7 @@ export const PostReview = async (data) => {
 export const GetReviews = async () => {
   try {
     const res = await api.get('/reviews')
+    console.log(res.data)
     return res.data
   } catch (error) {
     throw error
