@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
-const ReviewDetail = ({ reviewId }) => {
+const ReviewDetail = () => {
   const [review, setReview] = useState(null)
+  const { reviewId } = useParams()
 
   useEffect(() => {
     const fetchReview = async () => {
       try {
         const response = await axios.get(`/reviews/${reviewId}`)
         setReview(response.data)
-        console.log(response)
       } catch (error) {
         console.error(error)
       }

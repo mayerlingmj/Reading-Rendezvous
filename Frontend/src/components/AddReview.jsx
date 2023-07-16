@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { PostReview } from '../services/Review'
+import { useParams, useNavigate } from 'react-router-dom'
+import { PostReview, UpdateReview, DeleteReview } from '../services/Review'
 
-const AddReview = ({ reviewId }) => {
+const AddReview = () => {
   const [review, setReview] = useState('')
+  const { reviewId } = useParams()
+  const navigate = useNavigate()
 
   const handleReviewChange = (event) => {
     setReview(event.target.value)
@@ -14,8 +16,8 @@ const AddReview = ({ reviewId }) => {
 
     try {
       await PostReview(review)
-
       setReview('')
+      navigate('/reviews')
     } catch (error) {
       console.error(error)
     }
@@ -23,9 +25,8 @@ const AddReview = ({ reviewId }) => {
 
   const handleReviewUpdate = async () => {
     try {
-      await axios.put(`/reviews/${reviewId}`, {
-        review
-      })
+      await UpdateReview(reviewId, { review })
+      navigate('/reviews')
     } catch (error) {
       console.error(error)
     }
@@ -33,7 +34,8 @@ const AddReview = ({ reviewId }) => {
 
   const handleReviewDelete = async () => {
     try {
-      await axios.delete(`/reviews/${reviewId}`)
+      await DeleteReview(reviewId)
+      navigate('/reviews')
     } catch (error) {
       console.error(error)
     }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import ReviewDetails from './ReviewDetails'
+import { Link } from 'react-router-dom'
 import { GetReviews } from '../services/Review'
 
 const ReviewList = () => {
@@ -10,8 +9,8 @@ const ReviewList = () => {
     const fetchReviews = async () => {
       try {
         const response = await GetReviews()
+        console.log('Response from server:', response)
         setReviews(response.reviews)
-        console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -19,12 +18,14 @@ const ReviewList = () => {
 
     fetchReviews()
   }, [])
-
+  console.log('Reviews:', reviews)
   return (
     <div>
       <h2>Review List</h2>
       {reviews.map((review) => (
-        <ReviewDetails key={review._id} review={review} />
+        <div key={review._id}>
+          <Link to={`/reviews/${review._id}`}>{review.content}</Link>
+        </div>
       ))}
     </div>
   )

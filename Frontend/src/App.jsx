@@ -13,6 +13,7 @@ import AddBook from './components/AddBook'
 import BookList from './pages/BookList'
 import ReviewList from './pages/ReviewList'
 import ReviewDetail from './pages/ReviewDetails'
+import AddReview from './components/AddReview'
 
 import { CheckSession } from './services/Auth'
 
@@ -35,7 +36,7 @@ const App = () => {
       checkToken()
     }
   }, [])
-  console.log(user)
+
   return (
     <div className="App">
       <Nav user={user} handleLogOut={handleLogOut} />
@@ -49,13 +50,8 @@ const App = () => {
           <Route path="/reviews" element={<Reviews user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
           <Route exact path="/reviews" component={ReviewList} />
-          <Route
-            exact
-            path="/reviews/:reviewId"
-            render={({ match }) => (
-              <ReviewDetail reviewId={match.params.reviewId} />
-            )}
-          />
+          <Route path="/reviews/:reviewId" element={<AddReview />} />
+          <Route path="/reviewdetails/:reviewId" element={<ReviewDetail />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
           <Route path="/myBooks" element={<BookList />} />
         </Routes>

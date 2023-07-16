@@ -1,7 +1,8 @@
 import React from 'react'
-import SignIn from '../pages/Signin/'
+import SignIn from '../pages/Signin'
 import Register from '../pages/Register'
 import { Link } from 'react-router-dom'
+import './Nav.css'
 
 const Nav = ({ user, handleLogOut }) => {
   return (
