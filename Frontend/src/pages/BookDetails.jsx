@@ -9,7 +9,7 @@ const BookDetails = ({ book, user }) => {
 
   const handleAddBookToList = async () => {
     try {
-      await axios.post('/add-book-to-list', {
+      await axios.post('/api/books', {
         userId: user._id,
         bookId: book._id
       })
@@ -23,7 +23,7 @@ const BookDetails = ({ book, user }) => {
       if (book && book.cover_i) {
         try {
           const response = await axios.get(
-            `https://covers.openlibrary.org/b/id/${book.cover_i}-M.json`
+            `https://openlibrary.org/api/books?bibkeys=OLID:${book.cover_i}&format=json&jscmd=data`
           )
           setBookSummary(response.data.description || '')
         } catch (error) {
@@ -56,7 +56,6 @@ const BookDetails = ({ book, user }) => {
           <p>{bookSummary}</p>
         </div>
       )}
-      {book.cover_i && <img src={coverUrl} alt={book.title} />}
       <Reviews bookId={book._id} />
       <AddReview bookId={book._id} user={user} />
       {/* <button onClick={handleAddBookToList}>Add to My List</button> */}
