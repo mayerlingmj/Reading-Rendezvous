@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/books" element={<Books user={user} />} />
-          <Route path="/discussions" element={<AddDiscussions user={user} />} />
+          {/* <Route path="/discussions" element={<AddDiscussions user={user} />} /> */}
           <Route path="/discussions" element={<DiscussionList />} />
           <Route
             path="/discussions/:discussionId"
@@ -59,6 +59,7 @@ const App = () => {
           <Route path="/reviewdetails/:reviewId" element={<ReviewDetail />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
           <Route path="/myBooks" element={<BookList user={user} />} />
+          <Route path="/books/:id" element={<AddDiscussions user={user} />} />
         </Routes>
       </main>
     </div>

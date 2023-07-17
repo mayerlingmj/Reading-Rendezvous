@@ -16,3 +16,11 @@ export const GetBooks = async () => {
     throw error
   }
 }
+export const GetBook = async (id) => {
+  try {
+    const res = await api.get(`/books/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

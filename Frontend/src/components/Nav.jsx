@@ -13,7 +13,7 @@ const Nav = ({ user, handleLogOut }) => {
           <Link to="/books">Books</Link>
           <Link to="/myBooks">My Books</Link>
           <Link to="/reviews">Reviews</Link>
-          <Link to="/discussions">Discussions</Link>
+          {/* <Link to="/discussions">Discussions</Link> */}
           <button onClick={handleLogOut}>Log Out</button>
         </>
       ) : (

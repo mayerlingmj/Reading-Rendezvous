@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { GetReviews, DeleteReview, UpdateReview } from '../services/Review'
 
-const ReviewList = (user) => {
+const ReviewList = ({ user }) => {
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const ReviewList = (user) => {
             </div>
           )}
           <Link to={`/reviews/${review._id}`}>
-            {review.content} {review.book.title}
+            {review.content} {review.book && review.book.title}
           </Link>
         </div>
       ))}

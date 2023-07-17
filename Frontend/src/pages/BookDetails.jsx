@@ -48,7 +48,7 @@ const BookDetails = ({ book, user, key }) => {
       <img src={coverUrl} alt={book.title} />
       {book.author_name && <p>Author: {book.author_name.join(', ')}</p>}
       <AddReview bookId={book._id} user={user} />
-      <AddDiscussion bookId={book.id} user={user} />
+      {/* <AddDiscussion bookId={book._id} user={user} /> */}
     </div>
   )
 }
