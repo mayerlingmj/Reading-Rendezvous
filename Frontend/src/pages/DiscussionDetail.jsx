@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { GetDiscussions, UpdateDiscussion } from '../services/Discussion'
+import axios from 'axios'
 
 const DiscussionDetails = () => {
   const { discussionId } = useParams()
@@ -8,8 +8,8 @@ const DiscussionDetails = () => {
 
   useEffect(() => {
     const fetchDiscussion = async () => {
-      const result = await GetDiscussions(discussionId)
-      setDiscussion(result.data)
+      const result = await axios.get(`/discussions/${discussionId}`)
+      setDiscussion(result)
     }
 
     fetchDiscussion()
@@ -24,11 +24,10 @@ const DiscussionDetails = () => {
     <div>
       <h1>{discussion?.title}</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={discussion?.text}
+        <textarea
+          value={discussion?.content}
           onChange={(e) =>
-            setDiscussion({ ...discussion, text: e.target.value })
+            setDiscussion({ ...discussion, content: e.target.value })
           }
         />
         <button type="submit">Update</button>

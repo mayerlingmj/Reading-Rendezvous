@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { PostDiscussion, UpdateDiscussion } from '../services/Discussion.js'
 
-const AddDiscussion = ({ discussionId, initialData, onSuccess }) => {
+const AddDiscussion = ({ bookId, discussionId, initialData }) => {
   const [discussionData, setDiscussionData] = useState({
     title: '',
     content: '',
@@ -10,9 +10,12 @@ const AddDiscussion = ({ discussionId, initialData, onSuccess }) => {
 
   useEffect(() => {
     if (initialData) {
-      setDiscussionData(initialData)
+      setDiscussionData({
+        ...initialData,
+        book: bookId
+      })
     }
-  }, [initialData])
+  }, [initialData, bookId])
 
   const handleChange = (e) => {
     setDiscussionData({
