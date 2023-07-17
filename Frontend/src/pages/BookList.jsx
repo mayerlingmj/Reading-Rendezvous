@@ -20,11 +20,29 @@ const BookList = ({ user }) => {
   }, [])
 
   return (
-    <div>
-      <h2>Book List</h2>
-      {books.map((book) => (
-        <BookDetails user={user} key={book._id} book={book} />
-      ))}
+    <div
+      style={{
+        backgroundImage: 'url(https://i.imgur.com/1SMy1Ow.jpg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <div
+        style={{
+          padding: '20px',
+          borderRadius: '10px'
+        }}
+      >
+        <h2 style={{ color: '#fff' }}>Book List</h2>
+        {books.map((book) => (
+          <BookDetails user={user} key={book._id} book={book} />
+        ))}
+      </div>
     </div>
   )
 }

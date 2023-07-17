@@ -36,9 +36,9 @@ const BookDetails = ({ book, user, key }) => {
     fetchBookSummary()
   }, [book])
 
-  if (!book) {
-    return <div>Loading...</div>
-  }
+  // if (!book) {
+  //   return <div>Loading...</div>
+  // }
   console.log(book)
   return (
     <div>

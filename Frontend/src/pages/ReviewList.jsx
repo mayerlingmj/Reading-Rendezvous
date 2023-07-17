@@ -50,18 +50,18 @@ const ReviewList = ({ user }) => {
       <h2>Review List</h2>
       {reviews.map((review) => (
         <div key={review._id}>
-          {user && user.isAdmin && (
-            <div>
-              <input
-                type="text"
-                defaultValue={review.content}
-                onChange={(e) => handleEditReview(review._id, e.target.value)}
-              />
-              <button onClick={() => handleDeleteReview(review._id)}>
-                Delete
-              </button>
-            </div>
-          )}
+          {/* {user & user.isAdmin && ( */}
+          <div>
+            <input
+              type="text"
+              defaultValue={review.content}
+              onChange={(e) => handleEditReview(review._id, e.target.value)}
+            />
+            <button onClick={() => handleDeleteReview(review._id)}>
+              Delete
+            </button>
+          </div>
+          {/* // )} */}
           <Link to={`/reviews/${review._id}`}>
             {review.content} {review.book && review.book.title}
           </Link>

@@ -45,50 +45,110 @@ const AddBook = () => {
   }
 
   return (
-    <div>
-      <h2>Add a Book</h2>
-      <input
-        name="searchTerm"
-        value={searchTerm}
-        onChange={handleChange}
-        placeholder="Search Book Title"
-        required
-      />
-      <button onClick={handleSearch}>Search Books</button>
-      {searchResult &&
-        searchResult.map((book, index) => (
-          <div key={index}>
-            <p>
-              {book.title} ({book.first_publish_year})
-            </p>
-            {book.cover_i && (
+    <div
+      style={{
+        backgroundImage: 'url(https://i.imgur.com/8nKluxm.jpg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: 'rgba(255, 182, 193, 0.8)',
+          padding: '20px',
+          borderRadius: '10px'
+        }}
+      >
+        <h2 style={{ color: '#fff' }}>Add a Book</h2>
+        <input
+          name="searchTerm"
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder="Search Book Title"
+          required
+          style={{
+            marginBottom: '10px',
+            padding: '5px'
+          }}
+        />
+        <button
+          onClick={handleSearch}
+          style={{
+            backgroundColor: '#FF69B4',
+            color: '#fff',
+            padding: '5px'
+          }}
+        >
+          Search Books
+        </button>
+        {searchResult &&
+          searchResult.map((book, index) => (
+            <div
+              key={index}
+              style={{
+                marginBottom: '10px',
+                backgroundColor: '#FF69B4',
+                padding: '10px',
+                color: '#fff'
+              }}
+            >
+              <p>
+                {book.title} ({book.first_publish_year})
+              </p>
+              {book.cover_i && (
+                <img
+                  src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                  alt="Book Cover"
+                />
+              )}
+              <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  addBook(book)
+                }}
+                style={{
+                  backgroundColor: '#FFB6C1',
+                  color: '#fff',
+                  padding: '5px'
+                }}
+              >
+                Select This Book
+              </button>
+            </div>
+          ))}
+        {selectedBook && (
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              backgroundColor: '#FF69B4',
+              padding: '10px',
+              color: '#fff'
+            }}
+          >
+            <p>Selected Book: {selectedBook.title}</p>
+            {selectedBook.cover_i && (
               <img
-                src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                src={`https://covers.openlibrary.org/b/id/${selectedBook.cover_i}-M.jpg`}
                 alt="Book Cover"
               />
             )}
             <button
-              onClick={(e) => {
-                e.preventDefault()
-                addBook(book)
+              type="submit"
+              style={{
+                backgroundColor: '#FFB6C1',
+                color: '#fff',
+                padding: '5px'
               }}
             >
-              Select This Book
+              Add Book
             </button>
-          </div>
-        ))}
-      {selectedBook && (
-        <form onSubmit={handleSubmit}>
-          <p>Selected Book: {selectedBook.title}</p>
-          {selectedBook.cover_i && (
-            <img
-              src={`https://covers.openlibrary.org/b/id/${selectedBook.cover_i}-M.jpg`}
-              alt="Book Cover"
-            />
-          )}
-          <button type="submit">Add Book</button>
-        </form>
-      )}
+          </form>
+        )}
+      </div>
     </div>
   )
 }
