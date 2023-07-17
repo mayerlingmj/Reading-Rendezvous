@@ -10,7 +10,7 @@ const HomePage = () => {
       const result = await axios.get(
         `http://openlibrary.org/search.json?author=${author}`
       )
-      setBooks(result.data.docs.slice(0, 10))
+      setBooks(result.data.docs.slice(0, 4))
     }
 
     fetchBooks()
@@ -27,7 +27,8 @@ const HomePage = () => {
       style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '20px'
+        gap: '20px',
+        backgroundColor: 'pink'
       }}
     >
       {books.map((book, index) => (

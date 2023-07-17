@@ -13,7 +13,7 @@ const AddBook = () => {
       const olResponse = await axios.get(
         `https://openlibrary.org/search.json?title=${searchTerm}`
       )
-
+      console.log(olResponse)
       setSearchResult(olResponse.data.docs)
     } catch (error) {
       console.error(error)

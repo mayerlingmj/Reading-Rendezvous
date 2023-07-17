@@ -13,7 +13,7 @@ const createReview = async (req, res) => {
 const getReviewsByBook = async (req, res) => {
   const { bookId } = req.params
   try {
-    const reviews = await Review.find({ book: bookId })
+    const reviews = await Review.find({}).populate('book')
     res.json({ reviews })
   } catch (error) {
     console.error(error)

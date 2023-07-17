@@ -4,16 +4,15 @@ import Nav from './components/Nav'
 import SignIn from './pages/Signin'
 import Register from './pages/Register'
 import Books from './pages/Books'
-import Discussions from './components/Discussions'
+import AddDiscussions from './components/AddDiscussions'
 import DiscussionList from './pages/DiscussionList'
 import DiscussionDetails from './pages/DiscussionDetail'
-import Reviews from './pages/ReviewList'
+import ReviewList from './pages/ReviewList'
 import Comments from './components/Comments'
 import HomePage from './components/HomePage'
 import BookDetails from './pages/BookDetails'
 import AddBook from './components/AddBook'
 import BookList from './pages/BookList'
-import ReviewList from './pages/ReviewList'
 import ReviewDetail from './pages/ReviewDetails'
 import AddReview from './components/AddReview'
 
@@ -48,15 +47,14 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/books" element={<Books user={user} />} />
-          <Route path="/discussions" element={<Discussions user={user} />} />
+          <Route path="/discussions" element={<AddDiscussions user={user} />} />
           <Route path="/discussions" element={<DiscussionList />} />
           <Route
             path="/discussions/:discussionId"
             element={<DiscussionDetails />}
           />
-          <Route path="/reviews" element={<Reviews user={user} />} />
+          <Route path="/reviews" element={<ReviewList user={user} />} />
           <Route path="/comments" element={<Comments user={user} />} />
-          <Route exact path="/reviews" component={ReviewList} />
           <Route path="/reviews/:reviewId" element={<AddReview />} />
           <Route path="/reviewdetails/:reviewId" element={<ReviewDetail />} />
           <Route path="/book/:bookId" element={<BookDetails />} />

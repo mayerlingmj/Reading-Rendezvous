@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Reviews from './ReviewList'
 import AddReview from '../components/AddReview'
+import { Link } from 'react-router-dom'
 
-const BookDetails = ({ book, user }) => {
+const BookDetails = ({ book, user, key }) => {
   const [bookSummary, setBookSummary] = useState('')
   const coverUrl = `http://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
 
@@ -38,27 +39,15 @@ const BookDetails = ({ book, user }) => {
   if (!book) {
     return <div>Loading...</div>
   }
-
+  console.log(book)
   return (
     <div>
-      <h1>{book.title}</h1>
+      <Link to={`/books/${book._id}`}>
+        <h1>{book.title}</h1>
+      </Link>
       <img src={coverUrl} alt={book.title} />
-      {book.authors && <p>Author: {book.author_name.join(', ')}</p>}
-      {book.first_publish_year && (
-        <p>First Published: {book.first_publish_year}</p>
-      )}
-      {book.subject && <p>Subjects: {book.subject.join(', ')}</p>}
-      {book.publish_date && <p>Publish Date: {book.publish_date}</p>}
-      {book.publisher && <p>Publishers: {book.publisher.join(', ')}</p>}
-      {bookSummary && (
-        <div>
-          <h2>About</h2>
-          <p>{bookSummary}</p>
-        </div>
-      )}
-      <Reviews bookId={book._id} />
+      {book.author_name && <p>Author: {book.author_name.join(', ')}</p>}
       <AddReview bookId={book._id} user={user} />
-      {/* <button onClick={handleAddBookToList}>Add to My List</button> */}
     </div>
   )
 }
