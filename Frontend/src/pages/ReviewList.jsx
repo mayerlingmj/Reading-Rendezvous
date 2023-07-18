@@ -80,6 +80,12 @@ const ReviewList = ({ user }) => {
           <Link to={`/reviews/${review._id}`}>
             {review.content} {review.book && review.book.title}
           </Link>
+          {review.book && review.book.cover_i && (
+            <img
+              src={`http://covers.openlibrary.org/b/id/${review.book.cover_i}-M.jpg`}
+              alt={review.book.title}
+            />
+          )}
         </div>
       ))}
     </div>
