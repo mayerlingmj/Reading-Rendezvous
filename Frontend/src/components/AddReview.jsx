@@ -12,6 +12,7 @@ const AddReview = ({ user, bookId }) => {
   const { reviewId } = useParams()
   const navigate = useNavigate()
   console.log(user)
+
   const handleReviewChange = (event) => {
     setReview({
       ...review,

@@ -59,14 +59,18 @@ const ReviewList = ({ user }) => {
     }
   }
 
+  useEffect(() => {
+    document.body.style.backgroundImage = 'url(https://i.imgur.com/fs6BeS4.jpg)'
+    document.body.style.backgroundSize = 'cover'
+
+    return () => {
+      document.body.style.backgroundImage = null
+    }
+  }, [])
+
   return (
     <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        backgroundColor: 'pink'
-      }}
+      style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
     >
       <h2 style={{ width: '100%', textAlign: 'center' }}>Review List</h2>
       {reviews.map((review) => (
@@ -115,7 +119,8 @@ const ReviewList = ({ user }) => {
             to={`/reviews/${review._id}`}
             style={{ textDecoration: 'none', color: 'black' }}
           >
-            {review.content} {review.book && review.book.title}
+            {review.content}
+            {/* {review.book && review.book.title} */}
           </Link>
           {review.book && review.book.cover_i && (
             <img

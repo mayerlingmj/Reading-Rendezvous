@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { GetDiscussion } from '../services/Discussion'
+import { GetDiscussions } from '../services/Discussion'
 
 const DiscussionList = () => {
   const [discussions, setDiscussions] = useState([])

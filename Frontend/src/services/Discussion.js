@@ -9,7 +9,7 @@ export const PostDiscussion = async (data) => {
   }
 }
 
-export const GetDiscussion = async (discussionId) => {
+export const GetDiscussions = async (discussionId) => {
   try {
     const res = await api.get(`/discussions/${discussionId}`)
     return res.data

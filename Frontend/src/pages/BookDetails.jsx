@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import AddReview from '../components/AddReview'
-import AddDiscussion from '../components/AddDiscussions'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const BookDetails = ({ book, user, key }) => {
   const [bookSummary, setBookSummary] = useState('')
@@ -36,9 +36,6 @@ const BookDetails = ({ book, user, key }) => {
     fetchBookSummary()
   }, [book])
 
-  // if (!book) {
-  //   return <div>Loading...</div>
-  // }
   console.log(book)
   return (
     <div>
@@ -48,7 +45,6 @@ const BookDetails = ({ book, user, key }) => {
       <img src={coverUrl} alt={book.title} />
       {book.author_name && <p>Author: {book.author_name.join(', ')}</p>}
       <AddReview bookId={book._id} user={user} />
-      {/* <AddDiscussion bookId={book._id} user={user} /> */}
     </div>
   )
 }
