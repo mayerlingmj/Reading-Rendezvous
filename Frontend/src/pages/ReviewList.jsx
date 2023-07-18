@@ -120,7 +120,6 @@ const ReviewList = ({ user }) => {
             style={{ textDecoration: 'none', color: 'black' }}
           >
             {review.content}
-            {/* {review.book && review.book.title} */}
           </Link>
           {review.book && review.book.cover_i && (
             <img

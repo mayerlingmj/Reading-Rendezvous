@@ -22,27 +22,43 @@ const BookList = ({ user }) => {
   return (
     <div
       style={{
-        backgroundImage: 'url(https://i.imgur.com/1SMy1Ow.jpg)',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        backgroundImage: 'url(https://i.imgur.com/mHN3Nvh.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
+        padding: '20px'
       }}
     >
-      <div
+      <h2
         style={{
-          padding: '20px',
-          borderRadius: '10px'
+          width: '100%',
+          textAlign: 'center',
+          color: 'hotpink',
+          fontSize: '4em',
+          textShadow: '2px 2px 2px #ff69b4'
         }}
       >
-        <h2 style={{ color: '#fff' }}>Book List</h2>
-        {books.map((book) => (
-          <BookDetails user={user} key={book._id} book={book} />
-        ))}
-      </div>
+        Book List
+      </h2>
+      {books.map((book) => (
+        <div
+          key={book._id}
+          style={{
+            width: '200px',
+            margin: '10px',
+            backgroundColor: 'lavenderblush',
+            borderRadius: '5px',
+            padding: '10px',
+            boxSizing: 'border-box'
+          }}
+        >
+          <BookDetails user={user} book={book} />
+        </div>
+      ))}
     </div>
   )
 }

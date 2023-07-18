@@ -58,6 +58,7 @@ const AddReview = ({ user, bookId }) => {
         value={review.content}
         onChange={handleReviewChange}
       />
+      <label htmlFor="rating">Rating:</label>
       <input
         id="rating"
         type="number"
