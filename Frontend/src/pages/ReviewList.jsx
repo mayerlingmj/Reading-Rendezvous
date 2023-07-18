@@ -50,7 +50,6 @@ const ReviewList = ({ user }) => {
       <h2>Review List</h2>
       {reviews.map((review) => (
         <div key={review._id}>
-          {/* {user & user.isAdmin && ( */}
           <div>
             <input
               type="text"
@@ -61,7 +60,6 @@ const ReviewList = ({ user }) => {
               Delete
             </button>
           </div>
-          {/* // )} */}
           <Link to={`/reviews/${review._id}`}>
             {review.content} {review.book && review.book.title}
           </Link>
