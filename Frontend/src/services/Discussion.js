@@ -26,6 +26,16 @@ export const UpdateDiscussion = async (discussionId, data) => {
     throw error
   }
 }
+
+export const PostComment = async (data) => {
+  try {
+    const response = await api.post('/comments', data)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const GetBook = async (bookId) => {
   try {
     const response = await api.get(`/books/${id}`)
