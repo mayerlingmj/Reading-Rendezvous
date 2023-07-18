@@ -1,8 +1,10 @@
 const { Book } = require('../models')
+const controller = require('../controllers/AuthController')
 
 // Create a new book
 const createBook = async (req, res) => {
   try {
+    console.log(controller.CheckSession)
     const book = await Book.create({ ...req.body })
     res.status(201).send(book)
   } catch (error) {

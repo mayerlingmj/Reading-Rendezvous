@@ -25,7 +25,7 @@ const BookList = ({ user }) => {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        backgroundImage: 'url(https://i.imgur.com/mHN3Nvh.jpg)',
+        backgroundImage: 'url(https://i.imgur.com/Sycx1DJ.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',

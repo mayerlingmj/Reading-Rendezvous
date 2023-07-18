@@ -2,7 +2,7 @@ const router = require('express').Router()
 const controller = require('../controllers/DiscussionController')
 const middleware = require('../middleware')
 
-router.get('/', controller.getAllDiscussions)
+router.get('/book/:id', controller.getAllDiscussions)
 router.get('/:id', controller.getDiscussionById)
 router.post(
   '/',

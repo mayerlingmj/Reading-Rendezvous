@@ -60,7 +60,7 @@ const ReviewList = ({ user }) => {
   }
 
   useEffect(() => {
-    document.body.style.backgroundImage = 'url(https://i.imgur.com/fs6BeS4.jpg)'
+    document.body.style.backgroundImage = 'url(https://i.imgur.com/UIwoDai.jpg)'
     document.body.style.backgroundSize = 'cover'
 
     return () => {

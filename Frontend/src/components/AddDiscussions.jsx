@@ -12,8 +12,8 @@ const AddDiscussion = ({ user }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [discussions, setDiscussions] = useState([])
-  const [discussionToUpdate, setDiscussionToUpdate] = useState(null)
-
+  const [toggle, setToggle] = useState(false)
+  const [updateDiscussion, setUpdateDiscussion] = useState({ title, content })
   const { id } = useParams()
 
   useEffect(() => {
@@ -29,25 +29,28 @@ const AddDiscussion = ({ user }) => {
 
     const fetchDiscussions = async () => {
       try {
-        const response = await GetDiscussions()
-        setDiscussions(response)
+        const response = await GetDiscussions(id)
+        console.log(response)
+        setDiscussions(response.discussions)
       } catch (error) {
         console.error(error)
       }
     }
     fetchDiscussions()
-  }, [])
+  }, [toggle])
 
   const handlePostDiscussion = async () => {
     try {
       const discussionData = {
         title,
         content,
-        user: user.id
+        user: user.id,
+        book: id
       }
       await PostDiscussion(discussionData)
-      const response = await GetDiscussions()
-      setDiscussions(response)
+      setToggle((prevToggle) => (prevToggle = !prevToggle))
+      // const response = await GetDiscussions()
+      // setDiscussions(response)
     } catch (error) {
       console.error(error)
     }
@@ -55,14 +58,7 @@ const AddDiscussion = ({ user }) => {
 
   const handleUpdateDiscussion = async () => {
     try {
-      const discussionData = {
-        title,
-        content,
-        user: user.id
-      }
-      await UpdateDiscussion(discussionToUpdate, discussionData)
-      const response = await GetDiscussions()
-      setDiscussions(response)
+      await UpdateDiscussion(id, updateDiscussion)
     } catch (error) {
       console.error(error)
     }
@@ -88,9 +84,9 @@ const AddDiscussion = ({ user }) => {
       <button onClick={handlePostDiscussion}>Post Discussion</button>
       <button onClick={handleUpdateDiscussion}>Update Discussion</button>
       <div>
-        {discussions.map((discussion) => (
+        {discussions?.map((discussion) => (
           <div
-            key={discussion.id}
+            key={discussion._id}
             onClick={() => setDiscussionToUpdate(discussion.id)}
           >
             <h2>{discussion.title}</h2>

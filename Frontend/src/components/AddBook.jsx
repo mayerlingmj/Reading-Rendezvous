@@ -47,7 +47,7 @@ const AddBook = () => {
   return (
     <div
       style={{
-        backgroundImage: 'url(https://i.imgur.com/8nKluxm.jpg)',
+        backgroundImage: 'url(https://i.imgur.com/yNptru2.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         minHeight: '100vh',

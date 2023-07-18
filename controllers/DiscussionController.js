@@ -12,7 +12,7 @@ const createDiscussion = async (req, res) => {
 
 const getAllDiscussions = async (req, res) => {
   try {
-    const discussions = await Discussion.find()
+    const discussions = await Discussion.find({ book: req.params.id })
     res.json({ discussions })
   } catch (error) {
     console.error(error)
