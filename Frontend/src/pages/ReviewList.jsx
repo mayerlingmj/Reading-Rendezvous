@@ -4,6 +4,7 @@ import { GetReviews, DeleteReview, UpdateReview } from '../services/Review'
 
 const ReviewList = ({ user }) => {
   const [reviews, setReviews] = useState([])
+  const [editInputs, setEditInputs] = useState({})
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -19,6 +20,14 @@ const ReviewList = ({ user }) => {
     fetchReviews()
   }, [])
 
+  useEffect(() => {
+    const newEditInputs = reviews.reduce((inputs, review) => {
+      inputs[review._id] = review.content
+      return inputs
+    }, {})
+    setEditInputs(newEditInputs)
+  }, [reviews])
+
   const handleDeleteReview = async (reviewId) => {
     try {
       await DeleteReview(reviewId)
@@ -29,12 +38,19 @@ const ReviewList = ({ user }) => {
     }
   }
 
-  const handleEditReview = async (reviewId, updatedContent) => {
+  const handleInputChange = (reviewId, newValue) => {
+    setEditInputs({
+      ...editInputs,
+      [reviewId]: newValue
+    })
+  }
+
+  const handleUpdateReview = async (reviewId) => {
     try {
-      await UpdateReview(reviewId, { content: updatedContent })
+      await UpdateReview(reviewId, { content: editInputs[reviewId] })
       const updatedReviews = reviews.map((review) =>
         review._id === reviewId
-          ? { ...review, content: updatedContent }
+          ? { ...review, content: editInputs[reviewId] }
           : review
       )
       setReviews(updatedReviews)
@@ -42,8 +58,6 @@ const ReviewList = ({ user }) => {
       console.error(error)
     }
   }
-
-  console.log('Reviews:', reviews)
 
   return (
     <div>
@@ -53,9 +67,12 @@ const ReviewList = ({ user }) => {
           <div>
             <input
               type="text"
-              defaultValue={review.content}
-              onChange={(e) => handleEditReview(review._id, e.target.value)}
+              value={editInputs[review._id] || ''}
+              onChange={(e) => handleInputChange(review._id, e.target.value)}
             />
+            <button onClick={() => handleUpdateReview(review._id)}>
+              Update
+            </button>
             <button onClick={() => handleDeleteReview(review._id)}>
               Delete
             </button>
