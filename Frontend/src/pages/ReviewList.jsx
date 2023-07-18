@@ -60,30 +60,68 @@ const ReviewList = ({ user }) => {
   }
 
   return (
-    <div>
-      <h2>Review List</h2>
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        backgroundColor: 'pink'
+      }}
+    >
+      <h2 style={{ width: '100%', textAlign: 'center' }}>Review List</h2>
       {reviews.map((review) => (
-        <div key={review._id}>
-          <div>
+        <div
+          key={review._id}
+          style={{
+            width: '200px',
+            margin: '10px',
+            backgroundColor: 'lightpink',
+            borderRadius: '5px',
+            padding: '10px',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div style={{ marginBottom: '10px' }}>
             <input
               type="text"
               value={editInputs[review._id] || ''}
               onChange={(e) => handleInputChange(review._id, e.target.value)}
             />
-            <button onClick={() => handleUpdateReview(review._id)}>
+            <button
+              style={{
+                marginRight: '5px',
+                backgroundColor: 'hotpink',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px'
+              }}
+              onClick={() => handleUpdateReview(review._id)}
+            >
               Update
             </button>
-            <button onClick={() => handleDeleteReview(review._id)}>
+            <button
+              style={{
+                backgroundColor: 'hotpink',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px'
+              }}
+              onClick={() => handleDeleteReview(review._id)}
+            >
               Delete
             </button>
           </div>
-          <Link to={`/reviews/${review._id}`}>
+          <Link
+            to={`/reviews/${review._id}`}
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
             {review.content} {review.book && review.book.title}
           </Link>
           {review.book && review.book.cover_i && (
             <img
               src={`http://covers.openlibrary.org/b/id/${review.book.cover_i}-M.jpg`}
               alt={review.book.title}
+              style={{ width: '100%', height: 'auto' }}
             />
           )}
         </div>
