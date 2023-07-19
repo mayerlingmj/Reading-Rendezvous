@@ -86,34 +86,43 @@ const ReviewList = ({ user }) => {
           }}
         >
           <div style={{ marginBottom: '10px' }}>
-            <input
-              type="text"
+            <textarea
               value={editInputs[review._id] || ''}
               onChange={(e) => handleInputChange(review._id, e.target.value)}
+              style={{
+                marginBottom: '10px',
+                width: '100%',
+                resize: 'vertical'
+              }}
             />
-            <button
-              style={{
-                marginRight: '5px',
-                backgroundColor: 'hotpink',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px'
-              }}
-              onClick={() => handleUpdateReview(review._id)}
-            >
-              Update
-            </button>
-            <button
-              style={{
-                backgroundColor: 'hotpink',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px'
-              }}
-              onClick={() => handleDeleteReview(review._id)}
-            >
-              Delete
-            </button>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <button
+                style={{
+                  backgroundColor: 'hotpink',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  marginBottom: '10px',
+                  width: '48%'
+                }}
+                onClick={() => handleUpdateReview(review._id)}
+              >
+                Update
+              </button>
+              <button
+                style={{
+                  backgroundColor: 'hotpink',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  marginBottom: '10px',
+                  width: '48%'
+                }}
+                onClick={() => handleDeleteReview(review._id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
           <Link
             to={`/reviews/${review._id}`}
