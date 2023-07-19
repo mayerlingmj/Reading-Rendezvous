@@ -26,25 +26,38 @@ const SignIn = ({ setUser }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        onChange={handleChange}
-        name="email"
-        type="email"
-        placeholder="Email"
-        value={formValues.email}
-        required
-      />
-      <input
-        onChange={handleChange}
-        name="password"
-        type="password"
-        placeholder="Password"
-        value={formValues.password}
-        required
-      />
-      <button type="submit">Sign In</button>
-    </form>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: 'pink',
+        backgroundImage: 'url("https://i.imgur.com/e7EP3R8.jpg")',
+        backgroundSize: 'cover'
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={formValues.email}
+          required
+        />
+        <input
+          onChange={handleChange}
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={formValues.password}
+          required
+        />
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
   )
 }
 
