@@ -37,7 +37,18 @@ const Register = ({ setUser }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        backgroundImage: 'url(https://i.imgur.com/2mY7EVk.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
       <input
         onChange={handleChange}
         name="name"
