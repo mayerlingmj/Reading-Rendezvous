@@ -91,7 +91,6 @@ const AddBook = () => {
               key={index}
               style={{
                 marginBottom: '10px',
-                backgroundColor: '#FF69B4',
                 padding: '10px',
                 color: '#fff'
               }}
@@ -111,7 +110,7 @@ const AddBook = () => {
                   addBook(book)
                 }}
                 style={{
-                  backgroundColor: '#FFB6C1',
+                  backgroundColor: 'hotpink',
                   color: '#fff',
                   padding: '5px'
                 }}
