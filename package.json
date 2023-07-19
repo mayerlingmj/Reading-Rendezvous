@@ -4,7 +4,8 @@
   "description": "### Date: 07/08/23",
   "main": "server.js",
   "scripts": {
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "deploy": "git push heroku main && cd client && npm run build"
   },
   "keywords": [],
   "author": "",

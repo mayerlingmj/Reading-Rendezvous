@@ -3,9 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && touch ./dist/CNAME && echo 'https://readingrendezvous.surge.sh/' >> ./dist/CNAME && npx surge --project ./dist --domain 'https://readingrendezvous.surge.sh/'",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

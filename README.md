@@ -26,7 +26,7 @@
 - HTML
 - JavaScript
 
-### **_Getting Started_**
+### **_Screenshots_**
 
 #### This application will:
 
@@ -37,7 +37,9 @@
 
 ### **_Future Updates_**
 
-- [ ]
+- App notifications
+- Comment on Discussions
+- Full CRUD on Discussions
 
 ### **_Credits_**
 

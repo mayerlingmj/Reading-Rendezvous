@@ -23,6 +23,7 @@ const HomePage = () => {
           borderRadius: '15px',
           maxWidth: '40%',
           textAlign: 'center',
+          marginTop: '200px',
           fontFamily: 'Papyrus, fantasy',
           boxShadow: '0px 10px 15px rgba(0,0,0,0.1)'
         }}
