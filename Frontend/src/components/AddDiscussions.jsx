@@ -49,25 +49,61 @@ const AddDiscussion = ({ user }) => {
     }
   }
 
+  useEffect(() => {
+    document.body.style.backgroundImage = 'url(https://i.imgur.com/Ijazwxb.jpg)'
+    document.body.style.backgroundSize = 'cover'
+
+    return () => {
+      document.body.style.backgroundImage = null
+    }
+  }, [])
+
   return (
-    <div>
-      <img
-        src={`http://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-        alt={book.title}
-      />
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Discussion Title"
-      />
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Discussion Content"
-      />
-      <button onClick={handlePostDiscussion}>Post Discussion</button>
-      <div>
+    <div
+      style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+    >
+      <h2 style={{ width: '100%', textAlign: 'center' }}>Add Discussion</h2>
+      <div
+        style={{
+          width: '200px',
+          margin: '10px',
+          backgroundColor: 'lightpink',
+          borderRadius: '5px',
+          padding: '10px',
+          boxSizing: 'border-box'
+        }}
+      >
+        <img
+          src={`http://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+          alt={book.title}
+          style={{ width: '100%', height: 'auto' }}
+        />
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Discussion Title"
+          style={{ marginBottom: '10px', width: '100%' }}
+        />
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Discussion Content"
+          style={{ marginBottom: '10px', width: '100%' }}
+        />
+        <button
+          style={{
+            backgroundColor: 'hotpink',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            marginBottom: '10px',
+            width: '100%'
+          }}
+          onClick={handlePostDiscussion}
+        >
+          Post Discussion
+        </button>
         {discussions?.map((discussion) => (
           <div key={discussion._id}>
             <h2>{discussion.title}</h2>
